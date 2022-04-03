@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EkgguiController">
+            <Button onMouseClicked="#startEkg">Start Ekg</Button>
+    <Button onMouseClicked="#readEkg" layoutX="100">Simulate EKG REading</Button>
+    <LineChart fx:id="ekgLineChart" layoutX="14.0" layoutY="52.0" prefHeight="512.0" prefWidth="887.0" title="Exemplo EKG">
+        <xAxis>
+            <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis side="LEFT" />
+        </yAxis>
+    </LineChart>
+</AnchorPane>
