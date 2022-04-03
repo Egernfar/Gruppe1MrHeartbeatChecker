@@ -1,8 +1,6 @@
 package gui;
 
 import business.EKGObserver;
-import business.EkgController;
-import business.EkgControllerImpl;
 import data.DummyEKGRecorder;
 import data.EKGData;
 import javafx.application.Platform;
@@ -16,7 +14,6 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class EkgguiController implements EKGObserver {
-    EkgController ekgController = new EkgControllerImpl();
     DummyEKGRecorder recorder = new DummyEKGRecorder();
 
     @FXML
@@ -26,39 +23,25 @@ public class EkgguiController implements EKGObserver {
     @Override
     public void handle(EKGData ekgData) {
         // update UI on UI Thread
-        /*Runnable task = new Runnable() {
+        Runnable task = new Runnable() {
             @Override
             public void run() {
-                date.setTime(date.getTime()+1000);
                 DateFormat df = DateFormat.getTimeInstance();
-                addEkgReading(df.format(date), Math.random()*500);
+                var formatted = df.format(ekgData.getTime());
+                addEkgReading(formatted, ekgData.getVoltage());
             }
         };
         Platform.runLater(task);
-*/
-        date.setTime(date.getTime()+1000);
-        DateFormat df = DateFormat.getTimeInstance();
-        addEkgReading(df.format(date), Math.random()*500);
     }
 
     public void startEkg(MouseEvent mouseEvent) {
         //ekgController.startrecording();
         //ekgController.registerObserver(this);
-        visualizaGrafico();
+        visualizeGraph();
 
         // start recorder and tell it to notify this class
         recorder.setObserver(this);
         recorder.record();
-    }
-    Date date = new Date();
-    public void readEkg(MouseEvent mouseEvent) {
-        //ekgController.startrecording();
-        //ekgController.registerObserver(this);
-
-        date.setTime(date.getTime()+1000);
-        DateFormat df = DateFormat.getTimeInstance();
-        addEkgReading(df.format(date), Math.random()*500);
-
     }
 
     private void addEkgReading(String time, Double value){
@@ -67,7 +50,7 @@ public class EkgguiController implements EKGObserver {
 
     private XYChart.Series series;
 
-    private void visualizaGrafico(){
+    private void visualizeGraph(){
         ekgLineChart.setTitle("EKG Data");
         //yAxis.setLabel("Valores");
         //xAxis.setLabel("Meses");

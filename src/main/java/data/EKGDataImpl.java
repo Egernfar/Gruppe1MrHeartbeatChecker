@@ -1,10 +1,12 @@
 package data;
 
+import java.util.Date;
+
 public class EKGDataImpl implements EKGData {
     private double voltage;
-    private double time;
+    private Date time;
 
-    public EKGDataImpl(double voltage, double time) {
+    public EKGDataImpl(double voltage, Date time) {
         this.time=time;
         this.voltage=voltage;
 
@@ -21,12 +23,12 @@ public class EKGDataImpl implements EKGData {
     }
 
     @Override
-    public double getTime() {
+    public Date getTime() {
         return time;
     }
 
     @Override
-    public void setTime(double time) {
+    public void setTime(Date time) {
         this.time = time;
     }
 }
