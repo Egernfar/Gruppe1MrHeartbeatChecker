@@ -18,6 +18,7 @@ public class EkgguiController implements EKGObserver {
 
     @FXML
     public TextArea ekgView;
+    //LineChart kilde: https://stackoverflow.com/questions/61716487/multiple-linechart-series-with-javax-and-fxml
     public LineChart ekgLineChart;
 
     @Override
@@ -26,11 +27,14 @@ public class EkgguiController implements EKGObserver {
         Runnable task = new Runnable() {
             @Override
             public void run() {
+                // DateFormat kilde: https://docs.oracle.com/javase/7/docs/api/java/text/DateFormat.html
                 DateFormat df = DateFormat.getTimeInstance();
                 var formatted = df.format(ekgData.getTime());
                 addEkgReading(formatted, ekgData.getVoltage());
             }
         };
+        // Kilder: https://stackoverflow.com/questions/47183795/how-does-platform-runlater-function
+        //         https://stackoverflow.com/questions/29449297/java-lang-illegalstateexception-not-on-fx-application-thread-currentthread-t
         Platform.runLater(task);
     }
 
@@ -55,6 +59,7 @@ public class EkgguiController implements EKGObserver {
         //yAxis.setLabel("Valores");
         //xAxis.setLabel("Meses");
 
+        //Kilde: https://stackoverflow.com/questions/13064406/javafx-real-time-linechart-with-time-axis
         series = new XYChart.Series();
         series.setName("Patient EKG Data");
         //series.getData().add(new XYChart.Data("1", 23));
