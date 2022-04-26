@@ -8,7 +8,6 @@ import java.util.Date;
 //Subject
 public class DummyEKGRecorder implements EkgDataRecorder {
     private EKGObserver observer;
-    Date date = new Date();
 
     @Override
     public void record() {
@@ -16,12 +15,13 @@ public class DummyEKGRecorder implements EkgDataRecorder {
             @Override
             public void run() {
                 try {
+                    double time = 0;
                     //Dummy data generation
                     while(true) {
-                        Thread.sleep(500);
+                        Thread.sleep(50);
                         if (observer != null) {
-                            date.setTime(date.getTime()+1000);
-                            observer.handle(new EKGDataImpl(Math.random(), date));
+                            observer.handle(new EKGDataImpl(70*Math.random(), time));
+                            time+=0.5;
                         }
                     }
                 } catch (InterruptedException e) {
