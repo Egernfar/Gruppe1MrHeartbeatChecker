@@ -3,6 +3,8 @@ package gui;
 import business.EKGObserver;
 import data.DummyEKGRecorder;
 import data.EKGData;
+import data.EkgDataAccess;
+import database.EkgDTO;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -32,9 +34,12 @@ public class EkgguiController implements EKGObserver {
             }
         };
         Platform.runLater(task); // Alt kører på gui tråden - tasks til Gui sættes i kø
+
     }
 
     public void startEkg(MouseEvent mouseEvent) {
+EkgDataAccess ekgDataAccess = new EkgDataAccess();
+EkgDTO ekg = ekgDataAccess.createEKG(1, new Date());
 
 
         // start recorder and tell it to notify this class
