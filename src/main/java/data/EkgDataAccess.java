@@ -8,6 +8,7 @@ import java.util.Date;
 public class EkgDataAccess {
     public EkgDTO createEKG(int person_id, Date ekgStart){
             EkgDTO ekgDTO = new EkgDTO();
+            // Oversætter Java dato til SQL dato
             var sqlDate = new java.sql.Date(ekgStart.getTime());
             Connection conn = SQLconnection.getConnection();
             try {
@@ -17,6 +18,7 @@ public class EkgDataAccess {
                 preparedStatement.setInt(1,person_id);
                 preparedStatement.setDate(2,sqlDate);
                 preparedStatement.executeUpdate();
+                // Vi vil gerne kende ID genererert med AUTO_INCREMENT
                 ResultSet rs = preparedStatement.getGeneratedKeys();
                 if (rs.next()) {
                     int newId = rs.getInt(1);

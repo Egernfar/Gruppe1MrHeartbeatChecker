@@ -19,7 +19,7 @@ import java.util.Date;
 public class EkgguiController implements EKGObserver {
 
     DummyEKGRecorder recorder = new DummyEKGRecorder();
-
+// Kobler poly til vores FXML fil.
     @FXML
     public Polyline poly;
 
@@ -36,13 +36,13 @@ public class EkgguiController implements EKGObserver {
         Platform.runLater(task); // Alt kører på gui tråden - tasks til Gui sættes i kø
 
     }
-
+// Ved museklik. DataAccess klasse forbinder kode med database.
     public void startEkg(MouseEvent mouseEvent) {
 EkgDataAccess ekgDataAccess = new EkgDataAccess();
 EkgDTO ekg = ekgDataAccess.createEKG(1, new Date());
 
 
-        // start recorder and tell it to notify this class
+        // start recorder and tell it to notify this class - observer pattern
         recorder.setObserver(this);
         recorder.record();
     }

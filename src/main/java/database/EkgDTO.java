@@ -2,7 +2,7 @@ package database;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-
+// DTO : Data Transfer Object. DAO: Data Access Object.
 public class EkgDTO {
     private int id;
     private int person_id;

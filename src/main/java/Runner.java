@@ -3,3 +3,4 @@ public class Runner {
         EKGApp.run();
     }
 }
+// Hele programmet starter her - main()-metode
